@@ -1,0 +1,31 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "file_collector",
+    srcs = ["file_collector.cc"],
+    hdrs = ["file_collector.h"],
+    copts = [
+        "-std=c++20",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_test(
+    name = "file_collector_test",
+    size = "small",
+    srcs = ["file_collector_test.cc"],
+    copts = [
+        "-std=c++20",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+    linkopts = ["-pthread"],
+    deps = [
+        ":file_collector",
+        "@googletest//:gtest_main",
+    ],
+)

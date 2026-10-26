@@ -1,0 +1,9 @@
+# Профиль для проверки гонок данных: bazel test //... --config=tsan
+build:tsan --copt=-fsanitize=thread
+build:tsan --linkopt=-fsanitize=thread
+build:tsan --copt=-O1
+
+# Профиль для проверки памяти: bazel test //... --config=asan
+build:asan --copt=-fsanitize=address,undefined
+build:asan --linkopt=-fsanitize=address,undefined
+build:asan --copt=-O1
